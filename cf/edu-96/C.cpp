@@ -48,7 +48,7 @@ int32_t main() {
 	while(tc --) {
         int n;
         cin >> n;
-        int res = 0;
+        int ans = 0;
         if(n == 1){
             cout << n << endl;
             continue;
@@ -57,14 +57,14 @@ int32_t main() {
             cout << 2 << endl << 1 << " " << 2 << endl;
             continue;
         }
-        res = n;
+        ans = n;
         vector<pair<int,int>> v;
         v.p_b({n, n-1});
         for(int i=n-2; i>=1; i--) {
-            v.p_b({res, i});
-            res = (res + i) / 2;
+            v.p_b({ans, i});
+            ans = (ans + i) / 2;
         }
-        cout << res << endl;
+        cout << ans << endl;
         for(int i=0; i<n-1; i++) cout << v[i].first << " " << v[i].second << endl;
   	}     
 }
