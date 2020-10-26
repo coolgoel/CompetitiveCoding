@@ -49,8 +49,8 @@ int32_t main() {
         int n;
         cin >> n;
         bool f = 0;
-        for(int c=0; c<= 800; c++){
-            for(int b = 0; b <= 200; b++){
+        for(int c=0; c<= 700; c++){
+            for(int b = 0; b <= 250; b++){
                 if((b*5 + c *7 <= n) && ((n - (b*5 + c*7)) % 3) == 0){
                     f = 1;
                     cout << ((n - (b*5 + c*7)) / 3) << " " << b <<  " " << c << endl;
