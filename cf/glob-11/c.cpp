@@ -57,7 +57,7 @@ int32_t main() {
         dp[0].x = dp[0].y = 1;
         dp[0].t = 0;
         dp[0].mx = 0;
-        int maxnow[n+1] = {0};
+        int max_so_far[n+1] = {0};
         for(int i=1; i<=n; i++) 
         {
             cin >> dp[i].t >> dp[i].x >> dp[i].y;
@@ -68,10 +68,10 @@ int32_t main() {
             }
             if(i > 2*r)
             {
-                dp[i].mx = max(dp[i].mx, 1 + maxnow[i-2*r]);
+                dp[i].mx = max(dp[i].mx, 1 + max_so_far[i-2*r]);
             }
-            maxnow[i] = max(maxnow[i-1], dp[i].mx);      
+            max_so_far[i] = max(max_so_far[i-1], dp[i].mx);      
         }
-        cout << maxnow[n] << endl;
+        cout << max_so_far[n] << endl;
     }     
 }
