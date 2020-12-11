@@ -38,7 +38,6 @@ using _ost = tree<
 // 	return 'a';
 // }
 
-int mat[505][505][300];
 int32_t main() {
     fastIO;
  
@@ -51,7 +50,6 @@ int32_t main() {
     	cin >> n >> m;
     	string s[n];
     	for(int i=0; i<n; i++) cin >> s[i];
-    	for(int i=0; i<n; i++) for(int j=0; j<m; j++) for(int l=0; l<300; l++) {if(l == 0) mat[i][j][l] = 1; else mat[i][j][l] = 0;}
         int lf[n][m], rg[n][m];
     	for(int i=0; i<n; i++) for(int j=0; j<m; j++) {lf[i][j]=0; rg[i][j]=0;}
         for(int i=0; i<n; i++) {lf[i][0] = s[i][0] == '*'; rg[i][m-1] = s[i][m-1] == '*';}
@@ -73,22 +71,19 @@ int32_t main() {
 		}
 		
 		int cnt = 0;
-        for(int h=1; h<300; h++){
-        	for(int i=0; i<n; i++){
-        		for(int j=0; j<m; j++){
-        			if(s[i][j] == '*' && lf[i][j] >= h && rg[i][j] >= h){
-        				if(i == 0){
-        					if(h == 1) {
-        						mat[i][j][h] = 1;
+        for(int i=0; i<n; i++){
+        	for(int j=0; j<m; j++){
+        		if(s[i][j] == '*'){
+        			for(int h=1; h<=300; h++){
+        				int row = i+h-1;
+        				if(row < n && h <= min(j+1, m-j+1)){
+        					if(rg[row][j] >= h && lf[row][j] >= h) {
         						cnt++;
+        						// cout << i << " " << j << " " << h << endl;
         					}	
+        					else break;
         				}
-        				else {
-        					if(mat[i-1][j][h-1]) {
-        						mat[i][j][h] = 1;
-        						cnt++;
-        					}	
-        				}
+        				else break;
         			}
         		}
         	}
